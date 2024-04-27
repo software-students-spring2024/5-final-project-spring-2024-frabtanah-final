@@ -2,16 +2,16 @@ from flask import Flask, render_template, session, flash, redirect, request, jso
 import base64
 import datetime
 from bson import binary
-from pymongo import MongoClient
+import pymongo
+from pymongo.server_api import ServerApi
 import os
 
 
 app = Flask(__name__)
 
 #Connecting to the DB 
-client = MongoClient("");
-db = client[''] # Database Name 
-collection = db[''] #Collection name
+cxn = pymongo.MongoClient("mongodb://admin:secret@mongodb:27017")
+db = cxn["PlantDB"]
 
 @app.route('/')
 def home():
@@ -21,8 +21,8 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/save_image", methods=["POST"])
-def save_image():
+@app.route("/save_picture", methods=["POST"])
+def save_picture():
     """
     Route to save image and plant name.
     """
@@ -41,7 +41,7 @@ def save_image():
         }
 
         # inserting the plant into the collection
-        result = collection.insert_one(new_plant)
+        result = pymongo.collection.insert_one(new_plant)
         return jsonify({"msg": "Image saved successfully!", "id": str(result.inserted_id)}), 200
     
     return jsonify({"msg": "No image data provided."}), 400
