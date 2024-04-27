@@ -14,7 +14,7 @@ body {
     margin-bottom: 10px;
   }
   
-  button {
+  button, .styled-button {
     margin-bottom: 20px;
     padding: 10px 20px;
     font-size: 16px;
@@ -32,7 +32,7 @@ body {
   }
   
   
-  button#snap, button[type="submit"] {
+  button, #snap, button[type="submit"], .styled-button {
     background-color: #4CAF50; 
     border: none;
     color: white;
@@ -44,7 +44,7 @@ body {
     cursor: pointer;
   }
   
-  button#snap:hover, button[type="submit"]:hover {
+  button:hover, #snap:hover, button[type="submit"]:hover, .styled-button:hover {
     background-color: white;
     color: black;
     border: 1px solid #4CAF50;
