@@ -41,7 +41,7 @@ def save_picture():
         }
 
         # inserting the plant into the collection
-        result = collection.insert_one(new_plant)
+        result = pymongo.collection.insert_one(new_plant)
         return jsonify({"msg": "Image saved successfully!", "id": str(result.inserted_id)}), 200
     
     return jsonify({"msg": "No image data provided."}), 400
