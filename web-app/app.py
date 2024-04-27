@@ -21,8 +21,8 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/save_image", methods=["POST"])
-def save_image():
+@app.route("/save_picture", methods=["POST"])
+def save_picture():
     """
     Route to save image and plant name.
     """
