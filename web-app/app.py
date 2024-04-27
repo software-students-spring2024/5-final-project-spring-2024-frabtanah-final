@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session, flash, redirect, request, jsonify
 import base64
 import datetime
-from bson import binary
+from bson import binary, ObjectId
 import pymongo
 from pymongo.server_api import ServerApi
 import os
@@ -41,9 +41,14 @@ def save_picture():
             "date_uploaded": current_date
         }
 
-        # inserting the plant into the collection
+        # Inserting the plant into the collection
         result = collection.insert_one(new_plant)
-        return jsonify({"msg": "Image saved successfully!", "id": str(result.inserted_id)}), 200
+        plant_id = result.inserted_id
+
+        # Fetching the saved image and plant name to display
+        saved_plant = collection.find_one({"_id": ObjectId(plant_id)})
+        image = base64.b64encode(saved_plant['image_data']).decode('utf-8')
+        return render_template("display_plant.html", image=image, plant_name=saved_plant['plant_name'])
     
     return jsonify({"msg": "No image data provided."}), 400
 
