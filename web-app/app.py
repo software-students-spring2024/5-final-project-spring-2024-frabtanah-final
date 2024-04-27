@@ -9,9 +9,12 @@ import os
 app = Flask(__name__)
 
 #Connecting to the DB 
-client = MongoClient("");
-db = client[''] # Database Name 
-collection = db[''] #Collection name
+
+mongo_uri = "mongodb+srv://aalmesned1sch:F1W6utAefrUtxr9n@cluster0.qazvjes.mongodb.net/?retryWrites=true&w=majority&appName=cluster0"
+
+client = MongoClient(mongo_uri)
+db = client['PlantML']
+collection = db['plants']
 
 @app.route('/')
 def home():
