@@ -22,4 +22,6 @@ Then navigate to http://0.0.0.0:5000 to see the front end of the web app running
 
 ### Unit Tests
 
-To run unit tests, use the command: ```pytest web-app/tests/test_app.py```
+To run unit tests, navigate to the root directory and use the command: ```pytest web-app/tests/test_app.py```
+
+To check code coverage for the web-app, in the root directory run: ```pytest --cov=web-app web-app/tests```
