@@ -10,8 +10,9 @@ import os
 app = Flask(__name__)
 
 #Connecting to the DB 
-cxn = pymongo.MongoClient("mongodb://admin:secret@mongodb:27017")
+cxn = pymongo.MongoClient("mongodb://localhost:27017/.")
 db = cxn["PlantDB"]
+collection=db["plants"]
 
 @app.route('/')
 def home():
@@ -27,7 +28,7 @@ def save_picture():
     Route to save image and plant name.
     """
     image_data = request.form["image"]
-    plant_name = request.form["plant_name"]
+    plant_name = "Unknown Plant"
 
     if image_data:
         _, encoded = image_data.split(",", 1)
@@ -41,7 +42,7 @@ def save_picture():
         }
 
         # inserting the plant into the collection
-        result = pymongo.collection.insert_one(new_plant)
+        result = collection.insert_one(new_plant)
         return jsonify({"msg": "Image saved successfully!", "id": str(result.inserted_id)}), 200
     
     return jsonify({"msg": "No image data provided."}), 400
