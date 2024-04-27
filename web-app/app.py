@@ -3,14 +3,14 @@ import base64
 import datetime
 from bson import binary, ObjectId
 import pymongo
-from pymongo.server_api import ServerApi
+#from pymongo.server_api import ServerApi
 import os
 
 
 app = Flask(__name__)
 
 #Connecting to the DB 
-cxn = pymongo.MongoClient("mongodb://localhost:27017/.")
+cxn = pymongo.MongoClient("mongodb://admin:secret@mongodb:27017")
 db = cxn["PlantDB"]
 collection=db["plants"]
 
