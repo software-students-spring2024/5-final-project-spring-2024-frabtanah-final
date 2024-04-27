@@ -19,3 +19,7 @@ However, with this app you can now take a picture and save it to your profile an
 
 ```docker-compose up --build --force-recreate``` to build and run.
 Then navigate to http://0.0.0.0:5000 to see the front end of the web app running and interact with our app.
+
+### Unit Tests
+
+To run unit tests, use the command: ```pytest web-app/tests/test_app.py```
