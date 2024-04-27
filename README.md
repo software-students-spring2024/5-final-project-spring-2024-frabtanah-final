@@ -2,7 +2,7 @@
 
 # Final Project
 
-## MoodMap + Machine Learning 
+## MoodMap + Machine Learning
 
 Our app is an extension of our web app from project 2, that is, MoodMap aims to create emotional awareness through a comprehensive tracker that categorizes emotions into detailed subcategories, enabling users to monitor trends and foster personal growth on a daily and weekly basis.
 

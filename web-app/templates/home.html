@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Take a Picture</title>
+    <title>Take a Picture or Upload</title>
     <link rel="stylesheet" href="/static/picture.css"> 
 </head>
 <body>
-    <h1>Take a picture or upload one to identify your plant!</h1>
+    <h1>Take a picture to identify your plant!</h1>
     <div id="camera">
         <video id="video" width="640" height="480" autoplay></video>
         <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
     </div>
     <button id="snap">Capture</button>
     <button id="retake" style="display:none;">Retake Photo</button>
+    
+    <h2>Or upload an existing image </h2>
+    <input type="file" id="upload" accept="image/*" style="display:none;">
+    <button id="uploadBtn" class="styled-button">Upload Photo</button>
+    
     <form method="POST" action="/save_picture" style="display:none;">
         <input type="hidden" name="image" id="imageData">
         <button type="submit">Save Picture</button>
@@ -38,6 +43,8 @@
         var snapButton = document.getElementById('snap');
         var retakeButton = document.getElementById('retake');
         var form = document.querySelector('form');
+        var uploadBtn = document.getElementById('uploadBtn');
+        var uploadInput = document.getElementById('upload');
 
         //trigger photo take
         snapButton.addEventListener('click', function() {
@@ -60,6 +67,36 @@
             snapButton.style.display = 'inline';
             this.style.display = 'none';
             form.style.display = 'none';
+        });
+
+        //upload photo
+        uploadBtn.addEventListener('click', function() {
+            uploadInput.click(); // Trigger the file input click
+        });
+
+        uploadInput.addEventListener('change', function() {
+            var file = this.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = new Image();
+                    img.onload = function() {
+                        context.clearRect(0, 0, canvas.width, canvas.height);
+                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        var imageData = canvas.toDataURL('image/png');
+                        document.getElementById('imageData').value = imageData;
+
+                        // Update UI
+                        video.style.display = 'none';
+                        canvas.style.display = 'block';
+                        snapButton.style.display = 'none';
+                        retakeButton.style.display = 'inline';
+                        form.style.display = 'block';
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
         });
     </script>
 </body>
