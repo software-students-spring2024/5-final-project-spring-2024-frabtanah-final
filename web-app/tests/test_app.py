@@ -19,8 +19,8 @@ def test_home_route(client):
     assert response.status_code == 200
 
 def test_save_picture(client):
-    """Ensure the /save_picture route behaves correctly."""
-    #base64 string for a 1x1 pixel black PNG image
+    """Ensure the /save_picture route works"""
+    #base64 string for a 1x1 pixel black png image
     fake_image_base64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5QgFCSwYFiGXGgAAAApJREFUCNdjYGBgAAAABAABJzQnCgAAAABJRU5ErkJggg=="
     fake_image = BytesIO()
     fake_image.write(base64.b64decode(fake_image_base64))
