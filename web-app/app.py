@@ -2,19 +2,16 @@ from flask import Flask, render_template, session, flash, redirect, request, jso
 import base64
 import datetime
 from bson import binary
-from pymongo import MongoClient
+import pymongo
+from pymongo.server_api import ServerApi
 import os
 
 
 app = Flask(__name__)
 
 #Connecting to the DB 
-
-mongo_uri = "mongodb+srv://aalmesned1sch:F1W6utAefrUtxr9n@cluster0.qazvjes.mongodb.net/?retryWrites=true&w=majority&appName=cluster0"
-
-client = MongoClient(mongo_uri)
-db = client['PlantML']
-collection = db['plants']
+cxn = pymongo.MongoClient("mongodb://admin:secret@mongodb:27017")
+db = cxn["PlantDB"]
 
 @app.route('/')
 def home():
