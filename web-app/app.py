@@ -1,16 +1,17 @@
 from flask import Flask, render_template, session, flash, redirect, request, jsonify
+import requests
 import base64
 import datetime
 from bson import binary, ObjectId
 import pymongo
-from pymongo.server_api import ServerApi
+#from pymongo.server_api import ServerApi
 import os
 
 
 app = Flask(__name__)
 
 #Connecting to the DB 
-cxn = pymongo.MongoClient("mongodb://localhost:27017/.")
+cxn = pymongo.MongoClient("mongodb://admin:secret@mongodb:27017")
 db = cxn["PlantDB"]
 collection=db["plants"]
 
@@ -44,6 +45,15 @@ def save_picture():
         # Inserting the plant into the collection
         result = collection.insert_one(new_plant)
         plant_id = result.inserted_id
+
+        # Send a POST request to mlclient
+        try:
+            response = requests.post('http://mlclient:8000/process')
+            response.raise_for_status()  # Will raise an exception for HTTP error codes
+        except requests.RequestException as e:
+            return jsonify({"msg": "Failed to ping mlclient", "error": str(e)}), 500
+
+        # requests.post('http://mlclient:5000/process')
 
         # Fetching the saved image and plant name to display
         saved_plant = collection.find_one({"_id": ObjectId(plant_id)})
