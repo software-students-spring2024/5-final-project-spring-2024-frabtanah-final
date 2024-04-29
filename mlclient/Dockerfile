@@ -18,4 +18,4 @@ ADD . .
 EXPOSE 8000
 
 # Run app.py when the container launches
-CMD [ "python", "server.py" ]
+CMD [ "python3", "server.py" ]
