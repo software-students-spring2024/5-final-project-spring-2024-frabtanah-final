@@ -55,8 +55,6 @@ def save_picture():
         except requests.RequestException as e:
             return jsonify({"msg": "Failed to ping mlclient", "error": str(e)}), 500
 
-        # requests.post('http://mlclient:5000/process')
-
         # Fetching the saved image and plant name to display
         saved_plant = collection.find_one({"_id": ObjectId(plant_id)})
         image = base64.b64encode(saved_plant['image_data']).decode('utf-8')
