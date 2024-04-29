@@ -28,7 +28,7 @@ services:
   mlclient:
     build: ./mlclient
     ports:
-      - 8100:5000
+      - 8100:8000
     environment:
       - MONGO_DBNAME=PlantDB
       - MONGO_URI=mongodb://admin:secret@mongodb:27017
