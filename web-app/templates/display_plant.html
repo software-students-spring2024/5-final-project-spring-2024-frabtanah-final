@@ -9,7 +9,7 @@
 </head>
 {% include 'navbar.html' %}
 <body>
-    <h1>Your plant has been identified as a: {{ plant_name }}</h1>
+    <h1>Your plant has been identified as a {{ plant_name }} with a confidence of {{ confidence }}%</h1>
     <img src="data:image/png;base64,{{ image }}" alt="Plant Image">
 </body>
 </html>
