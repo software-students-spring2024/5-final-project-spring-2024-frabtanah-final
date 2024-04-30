@@ -37,6 +37,9 @@ jobs:
           pipenv install flask
           pipenv install pytest
           pipenv install gitcommitlogger
+          pipenv install bson
+          pipenv install pymongo
+          pipenv install dotenv
 
       - name: Build docker images
         run: |
