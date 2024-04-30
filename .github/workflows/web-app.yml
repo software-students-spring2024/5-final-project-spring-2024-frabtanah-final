@@ -41,11 +41,9 @@ jobs:
       - name: Build docker images
         run: |
           docker build -t web-app ./web-app
-          docker build -t mlclient ./mlclient
       - name: Test 
         run: |
-          pip3 install pytest
-          pytest
+          pipenv run pytest
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -56,7 +54,6 @@ jobs:
       - name: Push Docker image
         run: |
           docker push yourusername/web-app:latest
-          docker push yourusername/mlclient:latest
 
 
       - name: Deploy to Digital Ocean
