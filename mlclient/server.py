@@ -43,8 +43,10 @@ def poll_and_process():
     for plant in unknown_plants:
         image_data = plant['image_data']
         image = Image.open(io.BytesIO(image_data))
-        processed_name = process_plant_image(image)
-        collection.update_one({'_id': plant['_id']}, {'$set': {'plant_name': processed_name}})
+        processed_plant = process_plant_image(image)
+        conf = 100 * np.max(processed_plant[1])
+        collection.update_one({'_id': plant['_id']}, {'$set': {'plant_name': processed_plant[0]}})
+        collection.update_one({'_id': plant['_id']}, {'$set': {'confidence': str(conf)}})
     print("Processing completed.")
 
 
@@ -65,7 +67,7 @@ def process_plant_image(image):
     predictions = model.predict(image)
     score = tf.nn.softmax(predictions[0])
     predicted_class = CLASS_NAMES[np.argmax(score)]
-    return predicted_class
+    return [predicted_class, score]
 
 
 if __name__ == '__main__':

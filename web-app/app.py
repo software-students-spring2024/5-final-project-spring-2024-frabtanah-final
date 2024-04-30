@@ -35,6 +35,7 @@ def save_picture():
     print("Received request to save picture.")
     image_data = request.form["image"]
     plant_name = "Unknown Plant"
+    conf = "0"
 
     if image_data:
         _, encoded = image_data.split(",", 1)
@@ -44,6 +45,7 @@ def save_picture():
         new_plant = {
             "plant_name": plant_name,
             "image_data": binary.Binary(data),
+            "confidence": conf,
             "date_uploaded": current_date
         }
         print(f"Saving new plant entry: {new_plant}")
@@ -61,12 +63,10 @@ def save_picture():
             print(f"Failed to send POST request to mlclient: {str(e)}")
             return jsonify({"msg": "Failed to ping mlclient", "error": str(e)}), 500
 
-        # requests.post('http://mlclient:5000/process')
-
         # Fetching the saved image and plant name to display
         saved_plant = collection.find_one({"_id": ObjectId(plant_id)})
         image = base64.b64encode(saved_plant['image_data']).decode('utf-8')
-        return render_template("display_plant.html", image=image, plant_name=saved_plant['plant_name'])
+        return render_template("display_plant.html", image=image, plant_name=saved_plant['plant_name'], confidence=saved_plant['confidence'])
     
     return jsonify({"msg": "No image data provided."}), 400
 
