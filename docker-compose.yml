@@ -6,7 +6,7 @@ services:
       - 8000:5000
     environment:
       - MONGO_DBNAME=PlantDB
-      - MONGO_URI=mongodb://admin:secret@mongodb:27017
+      - MONGO_URI=mongodb+srv://plant1:pKxOwRJtyZIe4QHE@plantml.vg6gts0.mongodb.net/?retryWrites=true&w=majority
       - FLASK_APP=app.py
       - FLASK_ENV=development
       - FLASK_PORT=8000
@@ -31,7 +31,7 @@ services:
       - 8100:8000
     environment:
       - MONGO_DBNAME=PlantDB
-      - MONGO_URI=mongodb://admin:secret@mongodb:27017
+      - MONGO_URI=mongodb+srv://plant1:pKxOwRJtyZIe4QHE@plantml.vg6gts0.mongodb.net/?retryWrites=true&w=majority
       - FLASK_APP=server.py
       - FLASK_ENV=development
       - FLASK_PORT=8000

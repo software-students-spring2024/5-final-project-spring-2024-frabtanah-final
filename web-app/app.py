@@ -6,12 +6,16 @@ from bson import binary, ObjectId
 import pymongo
 #from pymongo.server_api import ServerApi
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
 
 #Connecting to the DB 
-cxn = pymongo.MongoClient("mongodb://admin:secret@mongodb:27017")
+MONGO_URI=os.getenv('MONGO_URI')
+print(f"Connecting to MongoDB at URI: {MONGO_URI}")
+cxn = pymongo.MongoClient(MONGO_URI)
 db = cxn["PlantDB"]
 collection=db["plants"]
 
@@ -28,6 +32,7 @@ def save_picture():
     """
     Route to save image and plant name.
     """
+    print("Received request to save picture.")
     image_data = request.form["image"]
     plant_name = "Unknown Plant"
     conf = "0"
@@ -43,6 +48,7 @@ def save_picture():
             "confidence": conf,
             "date_uploaded": current_date
         }
+        print(f"Saving new plant entry: {new_plant}")
 
         # Inserting the plant into the collection
         result = collection.insert_one(new_plant)
@@ -52,7 +58,9 @@ def save_picture():
         try:
             response = requests.post('http://mlclient:8000/process')
             response.raise_for_status()  # Will raise an exception for HTTP error codes
+            print("POST request to mlclient successful.")
         except requests.RequestException as e:
+            print(f"Failed to send POST request to mlclient: {str(e)}")
             return jsonify({"msg": "Failed to ping mlclient", "error": str(e)}), 500
 
         # Fetching the saved image and plant name to display
