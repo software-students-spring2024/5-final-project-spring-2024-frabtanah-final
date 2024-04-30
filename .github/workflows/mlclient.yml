@@ -42,7 +42,7 @@ jobs:
 
       - name: Build docker images
         run: |
-          docker build -t mlclient ./mlclient
+          docker build -t avachani/plant-recog:mlclient ./mlclient
       - name: Test 
         run: |
           pipenv run pytest
@@ -55,7 +55,7 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push avachani/mlclient:latest
+          docker push avachani/plant-recog:mlclient
 
 
       - name: Deploy to Digital Ocean

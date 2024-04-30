@@ -42,7 +42,7 @@ jobs:
 
       - name: Build docker images
         run: |
-          docker build -t web-app ./web-app
+          docker build -t avachani/plant-recog:web-app ./web-app
       
 
       - name: Login to Docker Hub
@@ -53,7 +53,7 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push avachani/web-app:latest
+          docker push avachani/plant-recog:web-app
 
 
       - name: Deploy to Digital Ocean
