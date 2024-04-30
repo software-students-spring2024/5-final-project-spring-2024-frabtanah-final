@@ -55,7 +55,7 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push yourusername/mlclient:latest
+          docker push avachani/mlclient:latest
 
 
       - name: Deploy to Digital Ocean
