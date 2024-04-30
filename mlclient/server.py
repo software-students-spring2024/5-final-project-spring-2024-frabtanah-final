@@ -25,7 +25,7 @@ IMG_WIDTH = 180
 CLASS_NAMES = ['aloevera', 'banana', 'bilimbi', 'cantaloupe', 'cassava', 'coconut', 'corn', 'cucumber', 'curcuma', 'eggplant', 'galangal', 'ginger', 'guava', 'kale', 'longbeans', 'mango', 'melon', 'orange', 'paddy', 'papaya', 'peperchili', 'pineapple', 'pomelo', 'shallot', 'soybeans', 'spinach', 'sweetpotatoes', 'tobacco', 'waterapple', 'watermelon']
 
 #Connecting to the DB 
-cxn = pymongo.MongoClient("mongodb://admin:secret@mongodb:27017")
+cxn = pymongo.MongoClient("mongodb+srv://plant1:pKxOwRJtyZIe4QHE@plantml.vg6gts0.mongodb.net/?retryWrites=true&w=majority")
 db = cxn["PlantDB"]
 collection=db["plants"]
 

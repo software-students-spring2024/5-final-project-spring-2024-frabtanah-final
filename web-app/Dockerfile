@@ -7,6 +7,7 @@ WORKDIR /app
 # install dependencies into the image - doing this first will speed up subsequent builds, as Docker will cache this step
 COPY requirements.txt ./
 RUN pip3 install -r requirements.txt
+RUN pip3 install dnspython
 
 
 # the ADD command is how you add files from your local machine into a Docker image
