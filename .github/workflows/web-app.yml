@@ -34,6 +34,8 @@ jobs:
           pipenv install python-dateutil
           pipenv install build
           pipenv install requests
+          pipenv install flask
+          pipenv install pytest
           pipenv install gitcommitlogger
 
       - name: Build docker images
