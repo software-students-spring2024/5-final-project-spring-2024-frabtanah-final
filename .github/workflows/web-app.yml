@@ -30,7 +30,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install --user pipenv
           pipenv install
-          pipenv install python-dotenv
           pipenv --python $(which python)
           pipenv install pytz
           pipenv install python-dateutil
@@ -41,7 +40,6 @@ jobs:
           pipenv install gitcommitlogger
           pipenv install bson
           pipenv install pymongo
-          pipenv install --dev
 
       - name: Build docker images
         run: |
