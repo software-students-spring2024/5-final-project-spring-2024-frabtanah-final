@@ -60,6 +60,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
+          
       - name: Deploy to Digital Ocean
         run: |
           ssh -o StrictHostKeyChecking=no root@64.225.51.26 << 'EOF'
