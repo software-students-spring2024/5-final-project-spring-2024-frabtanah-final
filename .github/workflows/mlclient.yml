@@ -61,7 +61,9 @@ jobs:
 
       - name: Deploy to Digital Ocean
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} root@64.225.51.26 << 'EOF'
+          echo "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}" > ./ssh_key
+          chmod 600 ./ssh_key
+          ssh -o StrictHostKeyChecking=no -i ./ssh_key root@64.225.51.26 << 'EOF'
             docker pull ${{ secrets.DOCKER_USERNAME }}/mlclient:${{ github.sha }}
             docker stop mlclient || true
             docker rm mlclient || true
