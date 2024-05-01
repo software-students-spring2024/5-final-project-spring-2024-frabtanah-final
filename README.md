@@ -2,11 +2,10 @@
 
 # Final Project
 
-## MoodMap + Machine Learning
+## Machine Learning Plant Recognition
 
-Our app is an extension of our web app from project 2, that is, MoodMap aims to create emotional awareness through a comprehensive tracker that categorizes emotions into detailed subcategories, enabling users to monitor trends and foster personal growth on a daily and weekly basis.
+Our web app allows users to capture or upload an image of a plant and we will identify the name of that plant using a machine learning model. 
 
-However, with this app you can now take a picture and save it to your profile and run a machine learning classification model on it to tell you how you're feeling.
 
 ## Team Members
 
@@ -15,13 +14,19 @@ However, with this app you can now take a picture and save it to your profile an
 - Tanuj Sistla - [tanuj123-cyber](https://github.com/tanuj123-cyber)
 - Abhi Vachani - [avachani](https://github.com/avachani)
 
-## To run our project, use
+## To run our project, locally use
 
 ```docker-compose up --build --force-recreate``` to build and run.
-Then navigate to http://0.0.0.0:5000 to see the front end of the web app running and interact with our app.
+Then navigate to http://0.0.0.0:8000 to see the front end of the web app running and interact with our app.
+
 
 ### Unit Tests
 
 To run unit tests, navigate to the root directory and use the command: ```pytest web-app/tests/test_app.py```
-
 To check code coverage for the web-app, in the root directory run: ```pytest --cov=web-app web-app/tests```
+
+## Link To Containers 
+[Both Containers](https://hub.docker.com/r/avachani/plant-recog/tags) 
+
+## Deployed Version
+here
