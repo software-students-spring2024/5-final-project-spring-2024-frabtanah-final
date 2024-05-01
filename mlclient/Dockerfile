@@ -10,6 +10,8 @@ RUN pip3 install -r requirements.txt
 RUN pip3 install matplotlib tensorflow pathlib
 RUN pip3 install requests
 RUN pip3 install dnspython
+RUN apt-get update && apt-get install -y iputils-ping net-tools
+
 
 # the ADD command is how you add files from your local machine into a Docker image
 # Copy the current directory contents into the container at /app
