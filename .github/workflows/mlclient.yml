@@ -38,6 +38,7 @@ jobs:
           pipenv install gitcommitlogger
           pipenv install bson
           pipenv install pymongo
+          pipenv install python-dotenv
 
       - name: Build docker images
         run: |
