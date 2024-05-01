@@ -1,4 +1,5 @@
 ![CI/CD](https://github.com/software-students-spring2024/5-final-project-spring-2024-frabtanah-final/actions/workflows/mlclient.yml/badge.svg)
+![CI/CD](https://github.com/software-students-spring2024/5-final-project-spring-2024-frabtanah-final/actions/workflows/web-app.yml/badge.svg)
 
 # Final Project
 
