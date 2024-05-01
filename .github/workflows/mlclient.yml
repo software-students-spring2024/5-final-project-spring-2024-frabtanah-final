@@ -65,7 +65,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/mlclient:${{ github.sha }}
             docker stop mlclient || true
             docker rm mlclient || true
-            docker run --name mlclient -d -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/mlclient:${{ github.sha }}
+            docker run --name mlclient -d -p 8000:8000 --env-file /root/.env ${{ secrets.DOCKER_USERNAME }}/mlclient:${{ github.sha }}
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}

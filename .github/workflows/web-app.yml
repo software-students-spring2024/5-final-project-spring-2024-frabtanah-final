@@ -60,14 +60,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
-          
+
       - name: Deploy to Digital Ocean
         run: |
           ssh -o StrictHostKeyChecking=no root@64.225.51.26 << 'EOF'
             docker pull ${{ secrets.DOCKER_USERNAME }}/web-app:${{ github.sha }}
             docker stop web-app || true
             docker rm web-app || true
-            docker run --name web-app -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/web-app:${{ github.sha }}
+            docker run --name web-app -d -p 5000:5000 --env-file /root/.env ${{ secrets.DOCKER_USERNAME }}/web-app:${{ github.sha }}
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
