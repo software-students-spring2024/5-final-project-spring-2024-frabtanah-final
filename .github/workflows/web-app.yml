@@ -44,7 +44,7 @@ jobs:
 
       - name: Build docker images
         run: |
-          docker build -t avachani/plant-recog:web-app ./web-app
+          docker build -t fctico11/sefinal2:web-app ./web-app
       
 
       - name: Login to Docker Hub
@@ -55,7 +55,7 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push avachani/plant-recog:web-app
+          docker push fctico11/sefinal2:web-app
 
       - name: Install SSH Key
         uses: webfactory/ssh-agent@v0.5.3
@@ -66,10 +66,10 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@104.236.10.111 << 'EOF'
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-            docker pull ${{ secrets.DOCKER_USERNAME }}/plant-recog:web-app
+            docker pull ${{ secrets.DOCKER_USERNAME }}/sefinal2:web-app
             docker stop web-app || true
             docker rm web-app || true
-            docker run --name web-app -d -p 5000:5000 --env-file /root/.env ${{ secrets.DOCKER_USERNAME }}/plant-recog:web-app
+            docker run --name web-app -d -p 5000:5000 --env-file /root/.env ${{ secrets.DOCKER_USERNAME }}/sefinal2:web-app
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
