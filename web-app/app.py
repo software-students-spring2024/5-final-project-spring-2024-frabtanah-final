@@ -56,7 +56,7 @@ def save_picture():
 
         # Send a POST request to mlclient
         try:
-            response = requests.post('http://64.225.51.26/process')
+            response = requests.post('http://64.225.51.26:8000/process')
             response.raise_for_status()  # Will raise an exception for HTTP error codes
             print("POST request to mlclient successful.")
         except requests.RequestException as e:
