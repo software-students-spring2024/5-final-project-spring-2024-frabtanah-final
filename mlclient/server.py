@@ -18,7 +18,7 @@ load_dotenv()
 MODEL_PATH = "plantrecog.keras"
 model = load_model(MODEL_PATH)
 
-# Configuration constants
+#Configuration constants
 BATCH_SIZE = 32
 IMG_HEIGHT = 180
 IMG_WIDTH = 180
