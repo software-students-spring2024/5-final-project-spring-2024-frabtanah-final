@@ -69,7 +69,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/sefinal2:mlclient
             docker stop mlclient || true
             docker rm mlclient || true
-            docker run --name mlclient -d -p 8000:8000 --env-file /root/.env ${{ secrets.DOCKER_USERNAME }}/sefinal2:mlclient
+            docker run --name mlclient -d -p 8100:8000 --env-file /root/.env ${{ secrets.DOCKER_USERNAME }}/sefinal2:mlclient
           EOF
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
