@@ -1,16 +1,16 @@
 .navbar {
     width: 100%;
-    background-color: #4CAF50; /* Setting the navbar color to the green used in buttons */
+    background-color: #4CAF50; 
     overflow: hidden;
     position: fixed;
     top: 0;
-    left: 0; /* Ensures it stretches across the full width */
-    z-index: 1000; /* Keeps the navbar on top of other elements */
+    left: 0; 
+    z-index: 1000; 
 }
 
 .nav-container {
     display: flex;
-    justify-content: center; /* This will center your app name */
+    justify-content: center; 
     padding: 14px 16px;
 }
 
@@ -20,13 +20,11 @@
     text-align: center;
 }
 
-/* Clear the margin and padding of HTML elements to ensure the navbar sticks to the top */
 html, body {
     margin: 0;
     padding: 0;
 }
 
-/* Update body padding-top to avoid content hiding behind the fixed navbar */
 body {
-    padding-top: 50px; /* You might need to adjust this value if your navbar is taller or shorter */
+    padding-top: 50px; 
 }
