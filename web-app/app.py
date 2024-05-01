@@ -37,7 +37,6 @@ def save_picture():
     plant_name = "Unknown Plant"
     conf = "0"
 
-
     if image_data:
         _, encoded = image_data.split(",", 1)
         data = base64.b64decode(encoded)
