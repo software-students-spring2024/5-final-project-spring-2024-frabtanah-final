@@ -55,12 +55,14 @@ jobs:
         run: |
           docker push avachani/plant-recog:web-app
 
+      - name: Install SSH Key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Deploy to Digital Ocean
         run: |
-          echo "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}" > ssh_key
-          chmod 600 ssh_key
-          ssh -o StrictHostKeyChecking=no -i ssh_key root@64.225.51.26 << 'EOF'
+          ssh -o StrictHostKeyChecking=no root@64.225.51.26 << 'EOF'
             docker pull ${{ secrets.DOCKER_USERNAME }}/web-app:${{ github.sha }}
             docker stop web-app || true
             docker rm web-app || true
