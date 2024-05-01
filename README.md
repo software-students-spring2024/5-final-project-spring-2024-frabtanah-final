@@ -1,4 +1,4 @@
-![Lint-free](https://github.com/nyu-software-engineering/containerized-app-exercise/actions/workflows/lint.yml/badge.svg)
+![CI/CD](https://github.com/fctico11/5-final-project-spring-2024-frabtanah-final/actions/workflows/web-app.yml/badge.svg)
 
 # Final Project
 
