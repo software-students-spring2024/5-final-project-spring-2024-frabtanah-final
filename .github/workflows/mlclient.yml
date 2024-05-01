@@ -55,9 +55,6 @@ jobs:
           docker push avachani/plant-recog:mlclient
 
 
-      - name: Deploy to Digital Ocean
-        run: |
-          # Commands to deploy subsystem to Digital Ocean
 
       - name: Deploy to Digital Ocean
         run: |
