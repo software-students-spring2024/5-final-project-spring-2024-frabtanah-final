@@ -12,7 +12,6 @@ jobs:
     env:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
     steps:
       - name: Checkout code
@@ -55,10 +54,21 @@ jobs:
         run: |
           docker push avachani/plant-recog:mlclient
 
+      - name: Install SSH Key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Deploy to Digital Ocean
         run: |
-          # Commands to deploy subsystem to Digital Ocean
+          ssh -o StrictHostKeyChecking=no root@64.225.51.26 << 'EOF'
+            docker pull ${{ secrets.DOCKER_USERNAME }}/mlclient:${{ github.sha }}
+            docker stop mlclient || true
+            docker rm mlclient || true
+            docker run --name mlclient -d -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/mlclient:${{ github.sha }}
+          EOF
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
           
       - name: Test 
         run: |
